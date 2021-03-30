@@ -6,10 +6,12 @@ class Application
 {
     public Router $router;
     public Request $request;
+    public Database $db;
     public static Application $app;
 
-    public function __construct() {
+    public function __construct(array $config) {
         static::$app = $this;
+        $this->db = new Database($config['database']);
         $this->request = new Request();
         $this->router = new Router($this->request);
     }

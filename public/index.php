@@ -4,6 +4,6 @@ include_once '../bootstrap.php';
 
 use app\core\Application;
 
-$app = new Application();
+$app = new Application($config);
 $app->router->load('web');
 $app->run();
