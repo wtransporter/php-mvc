@@ -4,15 +4,15 @@ use app\core\Migration;
 
 class m0002_add_password_to_users_table extends Migration
 {
+    public string $tableName = 'users';
+
     public function up()
     {
-        $sql = "ALTER TABLE users ADD COLUMN password varchar(255) NOT NULL";
-        $this->db->pdo->exec($sql);
+        $this->addColumn('password varchar(255) NOT NULL');
     }
 
     public function down()
     {
-        $sql = "ALTER TABLE users DROP COLUMN password";
-        $this->db->pdo->exec($sql);
+        $this->dropColumn('password');
     }
 }
