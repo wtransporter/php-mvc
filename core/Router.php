@@ -44,11 +44,17 @@ class Router
         if (is_string($callback)) {
             return $this->view($callback);
         }
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
+            if (! method_exists($callback[0], $callback[1])) {
+                throw new NotFoundException("Action \"$callback[1]\" not found in controller");
+            }
+        }
 
         return call_user_func($callback);
     }
 
-    public function view(string $view, $data = [])
+    public function view(string $view, array $data = [])
     {
         extract($data);
         include_once ROOT_DIR . 'views/' . $view . '.view.php';

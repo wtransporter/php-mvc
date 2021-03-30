@@ -6,8 +6,10 @@ class Application
 {
     public Router $router;
     public Request $request;
+    public static Application $app;
 
     public function __construct() {
+        static::$app = $this;
         $this->request = new Request();
         $this->router = new Router($this->request);
     }
