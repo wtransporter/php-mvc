@@ -56,7 +56,24 @@ class Router
 
     public function view(string $view, array $data = [])
     {
+        $layoutContent = $this->renderLayout();
+        $viewContent = $this->renderView($view, $data);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    protected function renderLayout()
+    {
+        ob_start();
+        require_once ROOT_DIR . 'views/layouts/main.view.php';
+        return ob_get_clean();
+    }
+    
+    protected function renderView(string $view, array $data = [])
+    {
+        $view = str_replace('.', '/', $view);
         extract($data);
-        include_once ROOT_DIR . 'views/' . $view . '.view.php';
+        ob_start();
+        require_once ROOT_DIR . 'views/' . $view . '.view.php';
+        return ob_get_clean();
     }
 }
