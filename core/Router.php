@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\exceptions\NotFoundException;
+
 class Router
 {
     protected array $routes = [
@@ -37,7 +39,7 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$uri] ?? false;
         if (! $callback) {
-            return "Not found";
+            throw new NotFoundException();
         }
         if (is_string($callback)) {
             return $this->view($callback);
