@@ -36,7 +36,7 @@
     if ($("#mainNav").offset().top > 100) {
       $("#mainNav").addClass("navbar-scrolled");
     } else {
-      $("#mainNav").removeClass("navbar-scrolled");
+      $("#mainNav").addClass("navbar-scrolled");
     }
   };
   // Collapse now if page is not at top
