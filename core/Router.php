@@ -39,7 +39,16 @@ class Router
         if (! $callback) {
             return "Not found";
         }
-        
+        if (is_string($callback)) {
+            return $this->view($callback);
+        }
+
         return call_user_func($callback);
+    }
+
+    public function view(string $view, $data = [])
+    {
+        extract($data);
+        include_once ROOT_DIR . 'views/' . $view . '.view.php';
     }
 }
