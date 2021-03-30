@@ -56,8 +56,8 @@ class Router
 
     public function view(string $view, array $data = [])
     {
-        $layoutContent = $this->renderLayout();
         $viewContent = $this->renderView($view, $data);
+        $layoutContent = $this->renderLayout();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -70,10 +70,14 @@ class Router
     
     protected function renderView(string $view, array $data = [])
     {
-        $view = str_replace('.', '/', $view);
-        extract($data);
         ob_start();
-        require_once ROOT_DIR . 'views/' . $view . '.view.php';
+        extract($data);
+        $view = str_replace('.', '/', $view);
+        $file = ROOT_DIR . 'views/' . $view . '.view.php';
+        if (!file_exists($file)) {
+            throw new NotFoundException("View not found");
+        }
+        require_once $file;
         return ob_get_clean();
     }
 }
