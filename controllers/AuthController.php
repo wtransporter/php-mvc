@@ -17,6 +17,9 @@ class AuthController
         $user = new User();
         if ($request->isMethod('POST')) {
             $user->loadData($request->all());
+            if ($user->validate() && $user->save()) {
+                redirect('login');
+            }
         }
         return view('auth.register');
     }
