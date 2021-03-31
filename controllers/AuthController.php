@@ -9,7 +9,10 @@ class AuthController
 {
     public function login()
     {
-        return view('auth.login');
+        $user = new User();
+        return view('auth.login', [
+            'model' => $user
+        ]);
     }
     
     public function register(Request $request)
@@ -21,6 +24,8 @@ class AuthController
                 redirect('login');
             }
         }
-        return view('auth.register');
+        return view('auth.register', [
+            'model' => $user
+        ]);
     }
 }

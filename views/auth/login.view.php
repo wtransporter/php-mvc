@@ -9,22 +9,17 @@
         </div>
         <div class="row text-secondary">
             <div class="col-lg-12">
-                <form class="row g-3">
-                    <div class="col-lg-6 offset-3">
-                        <label for="email" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="email" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                            Please choose a username.
-                        </div>
-                    </div>
-                    <div class="col-lg-6 offset-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="pasword" required>
-                    </div>
-                    <div class="col-8 mt-4 offset-3">
-                        <button class="btn btn-primary" type="submit">Login</button>
-                    </div>
-                </form>
+                <?php $form = \app\core\forms\Form::open('', 'POST'); ?>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'email')->email(); ?>
+                </div>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'password')->password(); ?>
+                </div>
+                <div class="col-8 mt-4 offset-3">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+                <?php \app\core\forms\Form::close(); ?>
             </div>
         </div>
     </div>

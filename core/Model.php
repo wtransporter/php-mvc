@@ -37,13 +37,31 @@ abstract class Model
         return empty($this->errors);
     }
 
+    public function errorMessages():array
+    {
+        return [
+            self::RULE_REQUIRED => 'This field is required',
+            self::RULE_EMAIL => 'This field must be valid email address',
+        ];
+    }
+
     public function save()
     {
         return true;
     }
 
-    public function addError(string $proterty, string $type)
+    public function addError(string $property, string $type)
+    {      
+        $this->errors[$property][] = $this->errorMessages()[$type];
+    }
+
+    public function hasError(string $property): bool
     {
-        $this->errors[$proterty][] = $type;
+        return isset($this->errors[$property]);
+    }
+
+    public function firstError(string $property)
+    {
+        return $this->errors[$property][0] ?? false;
     }
 }

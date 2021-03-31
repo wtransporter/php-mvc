@@ -10,36 +10,26 @@
         </div>
         <div class="row text-secondary">
             <div class="col-lg-12">
-                <form class="row g-3" action="" method="POST">
-                    <div class="col-md-6 offset-3">
-                        <label for="firstname" class="form-label">First name</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" value="">
-                    </div>
-                    <div class="col-lg-6 offset-3">
-                        <label for="lastname" class="form-label">Last name</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname" value="">
-                    </div>
-                    <div class="col-lg-6 offset-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="email" name="email" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                Please choose a username.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 offset-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="pasword" name="password">
-                    </div>
-                    <div class="col-lg-6 offset-3">
-                        <label for="passwordConfirm" class="form-label">Confirm password</label>
-                        <input type="text" class="form-control" id="passwordConfirm" name="passwordConfirm">
-                    </div>
-                    <div class="col-6 mt-4 offset-3">
-                        <button class="btn btn-primary" type="submit">Register</button>
-                    </div>
-                </form>
+                <?php $form = \app\core\forms\Form::open('', 'POST'); ?>
+                <div class="col-md-6 offset-3">
+                    <?php echo $form->addField($model, 'firstname'); ?>
+                </div>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'lastname'); ?>
+                </div>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'email')->email(); ?>
+                </div>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'password')->password(); ?>
+                </div>
+                <div class="col-lg-6 offset-3">
+                    <?php echo $form->addField($model, 'passwordConfirm')->password(); ?>
+                </div>
+                <div class="col-6 mt-4 offset-3">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+                <?php \app\core\forms\Form::close(); ?>
             </div>
         </div>
     </div>
