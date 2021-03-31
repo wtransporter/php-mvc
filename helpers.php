@@ -8,3 +8,11 @@ if (! function_exists('view')) {
         return Application::$app->router->view($view, $data);
     }
 }
+
+if (! function_exists('redirect')) {
+    function redirect(string $path)
+    {
+        header('Location: /' . $path);
+        exit;
+    }
+}
