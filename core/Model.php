@@ -45,11 +45,6 @@ abstract class Model
         ];
     }
 
-    public function save()
-    {
-        return true;
-    }
-
     public function addError(string $property, string $type)
     {      
         $this->errors[$property][] = $this->errorMessages()[$type];
