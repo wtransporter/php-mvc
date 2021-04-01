@@ -32,7 +32,7 @@ class User extends DbModel
         return [
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:\\app\\models\\User',
             'password' => 'required',
             'passwordConfirm' => 'required'
         ];

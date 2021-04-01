@@ -20,6 +20,9 @@
                     <button class="btn btn-primary" type="submit">Login</button>
                 </div>
                 <?php \app\core\forms\Form::close(); ?>
+                <div class="col-lg-6 offset-3 mt-4">
+                    Don't have an account? <a href="/register">Register</a>
+                </div>
             </div>
         </div>
     </div>
