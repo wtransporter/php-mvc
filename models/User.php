@@ -39,7 +39,7 @@ class User extends UserModel
             'lastname' => 'required',
             'email' => 'required|email|unique:\\app\\models\\User',
             'password' => 'required',
-            'passwordConfirm' => 'required'
+            'passwordConfirm' => 'required|match:password'
         ];
     }
 

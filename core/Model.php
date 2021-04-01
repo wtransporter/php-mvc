@@ -7,6 +7,7 @@ abstract class Model
     const RULE_REQUIRED = 'required';
     const RULE_EMAIL = 'email';
     const RULE_UNIQUE = 'unique';
+    const RULE_MATCH = 'match';
 
     public array $errors = [];
 
@@ -35,6 +36,9 @@ abstract class Model
                 if ($rule[0] === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addError($property, $rule[0]);
                 }
+                if ($rule[0] === self::RULE_MATCH && $value !== $this->{$rule[1]}) {
+                    $this->addError($property, $rule[0], $this->label($rule[1]));
+                }
                 if ($rule[0] === self::RULE_UNIQUE) {
                     $db = Application::$app->db;
                     $class = $rule[1];
@@ -58,6 +62,7 @@ abstract class Model
             self::RULE_REQUIRED => 'This field is required',
             self::RULE_EMAIL => 'This field must be valid email address',
             self::RULE_UNIQUE => 'This {unique} already exists in database',
+            self::RULE_MATCH => 'This field must be the same as {match}',
         ];
     }
 
