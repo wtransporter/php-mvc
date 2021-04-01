@@ -12,7 +12,7 @@ if (! function_exists('view')) {
 if (! function_exists('redirect')) {
     function redirect(string $path)
     {
-        header('Location: /' . $path);
+        header('Location: /' . trim($path, '/'));
         exit;
     }
 }

@@ -30,9 +30,9 @@ class Database
             include_once ROOT_DIR . 'migrations/' . $migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
             $instance = new $className($this);
-            $this->log("Applying migration $className");
+            $this->log("\e[32mApplying migration\e[0m $className");
             $instance->up();
-            $this->log("Applied migration $className");
+            $this->log("\e[32mApplied migration\e[0m $className");
             $newMigrations[] = $migration;
         }
 

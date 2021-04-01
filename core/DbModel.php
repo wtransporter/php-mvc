@@ -25,4 +25,17 @@ abstract class DbModel extends Model
     {
         return Application::$app->db->pdo->prepare($sql);
     }
+
+    public function find(array $where)
+    {
+        $table = $this->tableName();
+        $attributes = array_keys($where);
+        $sql = implode(" AND ", array_map(fn($item) => "$item=:$item", $attributes));
+        $statement = $this->prepare("SELECT * FROM $table WHERE $sql");
+        foreach ($where as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+        $statement->execute();
+        return $statement->fetchObject(get_class($this));
+    }
 }

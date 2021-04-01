@@ -3,13 +3,20 @@
 namespace app\controllers;
 
 use app\core\Request;
+use app\models\Login;
 use app\models\User;
 
 class AuthController
 {
-    public function login()
+    public function login(Request $request)
     {
-        $user = new User();
+        $user = new Login();
+        if ($request->isMethod('POST')) {
+            $user->loadData($request->all());
+            if ($user->validate() && $user->login()) {
+                redirect('/');
+            }
+        }
         return view('auth.login', [
             'model' => $user
         ]);

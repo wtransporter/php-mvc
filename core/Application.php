@@ -26,4 +26,9 @@ class Application
             ]);
         }
     }
+
+    public function login(DbModel $user)
+    {
+        return true;
+    }
 }
