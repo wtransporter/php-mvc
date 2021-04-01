@@ -11,6 +11,7 @@ abstract class Model
     public array $errors = [];
 
     abstract function rules(): array;
+    abstract function labels(): array;
 
     public function loadData(array $params)
     {
@@ -43,7 +44,7 @@ abstract class Model
                     $statement->execute();
                     $rec = $statement->fetchObject();
                     if ($rec) {
-                        $this->addError($property, $rule[0], $property);
+                        $this->addError($property, $rule[0], $this->label($property));
                     }
                 }
             }
@@ -74,5 +75,10 @@ abstract class Model
     public function firstError(string $property)
     {
         return $this->errors[$property][0] ?? false;
+    }
+
+    public function label(string $property)
+    {
+        return $this->labels()[$property] ?? $property;
     }
 }

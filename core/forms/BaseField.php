@@ -25,7 +25,7 @@ abstract class BaseField
                 <small>%s</small>
             </div>',
             $this->property,
-            $this->property,
+            $this->model->label($this->property),
             $this->model->firstError($this->property)
         );
     }

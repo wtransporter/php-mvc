@@ -43,6 +43,17 @@ class User extends UserModel
         ];
     }
 
+    public function labels(): array
+    {
+        return [
+            'firstname' => 'First name',
+            'lastname' => 'Last name',
+            'email' => 'E-mail',
+            'password' => 'Password',
+            'passwordConfirm' => 'Confirm password'
+        ];
+    }
+
     public function save()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);

@@ -23,6 +23,14 @@ class Login extends Model
         ];
     }
 
+    public function labels(): array
+    {
+        return [
+            'email' => 'E-mail',
+            'password' => 'Password'
+        ];
+    }
+
     public function login()
     {
         $user = (new User)->find(['email' => $this->email]);
