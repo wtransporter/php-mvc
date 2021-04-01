@@ -2,15 +2,20 @@
 
 namespace app\models;
 
-use app\core\DbModel;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
     public string $password = '';
     public string $passwordConfirm = '';
+
+    public function primaryKey(): string
+    {
+        return 'id';
+    }
 
     public function tableName(): string
     {
@@ -42,5 +47,10 @@ class User extends DbModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         return parent::save();
+    }
+
+    public function displayName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }

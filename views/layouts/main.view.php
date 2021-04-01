@@ -32,8 +32,13 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contact">Contact</a></li>
                 </ul>
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/register">Register</a></li>
+                    <?php if (!auth()) : ?>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/register">Register</a></li>
+                    <?php else : ?>
+                        <span><?php echo auth()->displayName(); ?></span>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">Logout</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

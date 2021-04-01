@@ -32,3 +32,10 @@ if (! function_exists('flash')) {
         }
     }
 }
+
+if (! function_exists('auth')) {
+    function auth()
+    {
+        return Application::$app->authUser;
+    }
+}

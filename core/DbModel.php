@@ -4,6 +4,7 @@ namespace app\core;
 
 abstract class DbModel extends Model
 {
+    abstract function primaryKey(): string;
     abstract function tableName(): string;
     abstract function attributes(): array;
 

@@ -37,4 +37,11 @@ class AuthController
             'model' => $user
         ]);
     }
+
+    public function logout()
+    {
+        Application::$app->logout();
+        Application::$app->session->setFlash('You have successfully logged out');
+        redirect('/');
+    }
 }

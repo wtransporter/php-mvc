@@ -27,7 +27,7 @@ class Login extends Model
     {
         $user = (new User)->find(['email' => $this->email]);
         if (!$user || !password_verify($this->password, $user->password)) {
-            Application::$app->session->setFlash('Wrong username or password.');
+            Application::$app->session->setFlash('Wrong username or password.', 'danger');
             redirect('login');
         }
 
