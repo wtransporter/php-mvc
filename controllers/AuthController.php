@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Request;
 use app\models\Login;
 use app\models\User;
@@ -28,6 +29,7 @@ class AuthController
         if ($request->isMethod('POST')) {
             $user->loadData($request->all());
             if ($user->validate() && $user->save()) {
+                Application::$app->session->setFlash('You are successfully registered. You can login now.');
                 redirect('login');
             }
         }

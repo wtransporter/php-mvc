@@ -38,6 +38,11 @@
             </div>
         </div>
     </nav>
+    <?php if (\app\core\Application::$app->session->getFlash()) : ?>
+        <div class="container mt-4 text-center">
+            <?php flash(); ?>
+        </div>
+    <?php endif; ?>
     {{content}}
     <!-- Footer-->
     <footer class="bg-light py-5">

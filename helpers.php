@@ -16,3 +16,19 @@ if (! function_exists('redirect')) {
         exit;
     }
 }
+
+if (! function_exists('flash')) {
+    function flash() {
+        $session = Application::$app->session;
+        if ($session->getFlash()) {
+            echo sprintf(
+                '<div class="alert alert-%s">
+                    %s
+                </div>',
+                $session->getFlash()['type'],
+                $session->getFlash()['message']
+            );
+            $session->clearFlash();
+        }
+    }
+}
